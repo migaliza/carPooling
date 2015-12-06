@@ -125,6 +125,17 @@ function signUp() {
             var theUrl = "http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/request.php?cmd=5&" + stringVal;
 
             var obj = sendRequest(theUrl);
+            if(obj.result==1){
+                alert("Succesfully Signed Up");
+                email="";
+                firstName="";
+                lastName="";
+                phoneNumber="";
+                userName="";
+            }
+            else{
+                alert("Unsuccessful");
+            }
 
 
         }
@@ -151,7 +162,8 @@ function Login() {
         var obj = sendRequest(theUrl);
         
         if(obj.result==1){
-            window.location="createPool.php";
+            window.location.replace('http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/createPool.php');
+  
         }
     });
 }

@@ -123,8 +123,13 @@ switch ($cmd) {
 
 
         $str_query = "INSERT INTO  MWC_PoolMembers (Name,PhoneNumber) VALUES('$name','$pNumber')";
-        mysqli_query($link, $str_query);
-        $poolDetails = "You joined the pool";
+        if (mysqli_query($link, $str_query)) {
+            echo '{"result":1,"message": "SUpdated"}';
+        } else {
+            //echo $str_query;
+            echo '{"result":0,"message": "unsuccessful"}';
+        }
+       // $poolDetails = "You joined the pool";
 
         ob_start();
         //echo "here";
@@ -164,10 +169,15 @@ switch ($cmd) {
 
 
         $str_query = "INSERT INTO MWC_SignUpCarPooling (Email,FirstName,LastName,PhonNumber,randomPass,UserName) VALUES('$email','$FirstName','$LastName','$phoneNumber','$randomPass','$username')";
-        $content ="Your user name is ".$username ." and Password is: ".$randomPass;
-        echo $str_query;
-        mysqli_query($link, $str_query);
-
+       // $content ="Your user name is ".$username ." and Password is: ".$randomPass;
+       // echo $str_query;
+        if (mysqli_query($link, $str_query)) {
+            echo '{"result":1,"message": "SUpdated"}';
+        } else {
+            //echo $str_query;
+            echo '{"result":0,"message": "unsuccessful"}';
+        }
+/*
         ob_start();
         echo "here";
         $url = "https://api.smsgh.com/v3/messages/send?"
@@ -181,7 +191,7 @@ switch ($cmd) {
         
         $response = file_get_contents($url);
 // var_dump($response);
-        ob_end_clean();
+        ob_end_clean();*/
 
 
         break;
