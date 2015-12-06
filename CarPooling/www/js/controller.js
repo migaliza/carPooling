@@ -127,14 +127,21 @@ function signUp() {
             var obj = sendRequest(theUrl);
             if(obj.result==1){
                 alert("Succesfully Signed Up");
-                email="";
-                firstName="";
-                lastName="";
-                phoneNumber="";
-                userName="";
+                document.getElementById("email").value ="";
+                document.getElementById("firstName").value ="";
+                document.getElementById("lastName").value ="";
+                document.getElementById("pNumber").value ="";
+                document.getElementById("userName").value ="";
+
             }
             else{
                 alert("Unsuccessful");
+                document.getElementById("email").value ="";
+                document.getElementById("firstName").value ="";
+                document.getElementById("lastName").value ="";
+                document.getElementById("pNumber").value ="";
+                document.getElementById("userName").value ="";
+
             }
 
 
@@ -162,7 +169,7 @@ function Login() {
         var obj = sendRequest(theUrl);
         
         if(obj.result==1){
-            window.location.replace('http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/createPool.php');
+            window.location.replace('createPool.php');
   
         }
     });
