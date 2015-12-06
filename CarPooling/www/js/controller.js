@@ -169,7 +169,7 @@ function Login() {
         var obj = sendRequest(theUrl);
         
         if(obj.result==1){
-            window.location.replace('createPool.php');
+            window.location.replace('createPool.html');
   
         }
     });
