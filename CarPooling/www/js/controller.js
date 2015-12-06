@@ -27,8 +27,8 @@ function costPerPerson() {
  */
 function joinPool() {
     $errorMsg = $("<span class='error'>This field is required..!!</span>");
-    if (($("#nameO").val().length == 0) && ($("#phoneNu").val().length== 0)) {
-       alert("Enter name and phone number");
+    if (($("#nameO").val().length == 0) && ($("#phoneNu").val().length == 0)) {
+        alert("Enter name and phone number");
     }
     else {
         var pool = document.getElementById("poolId");
@@ -42,13 +42,13 @@ function joinPool() {
         else {
             var joinName = $("#nameO").val();
             var phoneNumber = $("#phoneNu").val();
-            var stringPool = "Name="+joinName+"&PhoneNumber="+phoneNumber;
+            var stringPool = "Name=" + joinName + "&PhoneNumber=" + phoneNumber;
             var stringVal = "PoolId=" + id + "&Remaining=" + numberUpdate;
             var theUrl = "http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/request.php?cmd=3&" + stringVal;
             var obj = sendRequest(theUrl);
-            var joinUrl = "http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/request.php?cmd=4&"+stringPool;
+            var joinUrl = "http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/request.php?cmd=4&" + stringPool;
             var obj2 = sendRequest(joinUrl);
-            if (obj.result === 1 ) {
+            if (obj.result === 1) {
                 alert("Sucessfull");
             }
             else {
@@ -105,6 +105,68 @@ function sendRequest(u) {
     var obj = $.ajax({url: u, async: false});
     var result = $.parseJSON(obj.responseText);
     return result;
+}
+
+function signUp() {
+    $("#signupform").submit(function (ev) {
+        ev.preventDefault();
+        var email = $("#email").val();
+        var firstName = $("#firstName").val();
+        var lastName = $("#lastName").val();
+        var phoneNumber = $("#pNumber").val();
+        var userName = $("#userName").val();
+        
+
+        if (email == "" || firstName == "" || lastName == "" || phoneNumber === ""||userName==="") {
+            alert("The values entered are invalid or Your passwords do not match");
+        }
+        else {
+            var stringVal = "Email=" + email + "&FirstName=" + firstName + "&LastName=" + lastName + "&PhonNumber=" + phoneNumber+"&UserName="+userName;
+            var theUrl = "http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/request.php?cmd=5&" + stringVal;
+
+            var obj = sendRequest(theUrl);
+
+
+        }
+
+
+
+    });
+}
+/*
+ * 
+ * @returns {undefined}
+ * function to signup the user
+ */
+
+function Login() {
+    $("#loginbox").submit(function (ev) {
+        ev.preventDefault();
+
+        var username = $("#loginUsername").val();
+        var password = $("#loginPassword").val();
+        var stringVal = "UserName=" + username + "&randomPass=" + password;
+        var theUrl = "http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/request.php?cmd=6&" + stringVal;
+
+        var obj = sendRequest(theUrl);
+        
+        if(obj.result==1){
+            window.location="http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/createPool.php";
+        }
+    });
+}
+
+function checkPassword() {
+    var password = $("#password").val();
+    var confirmPassword = $("#cPassword");
+
+    if (password !== confirmPassword) {
+        $("checkConfirmPassword").html("Password do not match");
+    }
+    else {
+        $("checkConfirmPassword").html("Passwords Match");
+    }
+
 }
 
 /*

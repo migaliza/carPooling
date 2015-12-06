@@ -1,14 +1,19 @@
+<?php
+include('request.php');
+?>
+
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+
 <html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
+        <title>Create Pool</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -42,8 +47,9 @@ and open the template in the editor.
                 <div id="navbar" class="navbar-collapse collapse">
                     <div>
                         <ul class="nav nav-tabs nav-justified">
-                            <li class="active"><a href="index.html"><b>VIEW POOLS</b></a></li>
-                            <li><a href="createPool.html"><b>CREATE NEW POOL</b></a></li> 
+                            <li ><a href="index.html"><b>HOME</b></a></li>
+                            <li><a href="createPool.php"><b>NEW POOL</b></a></li>--> 
+                            <li><a href="viewMyPool.html"><b>VIEW MY POOLS</b></a></li> 
                         </ul>
                     </div>
                 </div><!--/.navbar-collapse -->
@@ -53,7 +59,7 @@ and open the template in the editor.
             <form method="POST"  id="submitData">
                 <div class="form-group">
                     <label for="inputName">Name:</label>
-                    <input type="text" class="form-control" id="nameO" name="Owener" placeholder="name">
+                    <input type="text" class="form-control" id="nameO"  disabled="disabled" name="Owener" placeholder="name" value="<?php echo $_SESSION['UserName']; ?>">
                 </div>
                 <div class="form-group">
                     <label for="inputDestination">Destination</label>
@@ -87,16 +93,16 @@ and open the template in the editor.
         </div>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
         <script src="js/vendor/jquery-1.11.2.js"></script>
-    
+
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/controller.js"></script>
 
         <script src="js/main.js"></script>
 
-    
+
         <script>
-            
-          
+
+
         </script>
     </body>
 </html>

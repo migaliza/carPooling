@@ -1,5 +1,5 @@
 <?php
-
+session_start(); 
 $cmd = $_REQUEST['cmd'];
 switch ($cmd) {
     //add items to the database
@@ -124,7 +124,7 @@ switch ($cmd) {
 
         $str_query = "INSERT INTO  MWC_PoolMembers (Name,PhoneNumber) VALUES('$name','$pNumber')";
         mysqli_query($link, $str_query);
-        $poolDetails="You joined the pool";
+        $poolDetails = "You joined the pool";
 
         ob_start();
         //echo "here";
@@ -139,5 +139,84 @@ switch ($cmd) {
         ob_end_clean();
 
         break;
+
+    case 5:
+
+
+        $DB_HOST = "localhost";
+        $DB_NAME = "csashesi_beatrice-lungahu";
+        $DB_USER = "csashesi_bl16";
+        $DB_PWORD = "db!hiJ35";
+
+        $link = mysqli_connect($DB_HOST, $DB_USER, $DB_PWORD, $DB_NAME);
+        if ($link == false) {
+            echo "not succesfull";
+        }
+
+        $email = $_REQUEST['Email'];
+        $FirstName = $_REQUEST['FirstName'];
+        $LastName = $_REQUEST['LastName'];
+        $phoneNumber = $_REQUEST['PhonNumber'];
+        $username = $_REQUEST['UserName'];
+        $random = mt_rand(30, 60);
+        $randomPass = $LastName . $random;
+
+
+
+        $str_query = "INSERT INTO MWC_SignUpCarPooling (Email,FirstName,LastName,PhonNumber,randomPass,UserName) VALUES('$email','$FirstName','$LastName','$phoneNumber','$randomPass','$username')";
+        $content ="Your user name is ".$username ." and Password is: ".$randomPass;
+        echo $str_query;
+        mysqli_query($link, $str_query);
+
+        ob_start();
+        echo "here";
+        $url = "https://api.smsgh.com/v3/messages/send?"
+                . "From=Beatrice"
+                . "&To=%2B$phoneNumber"
+                . "&Content=$randomPass"
+                . "&ClientId=odfbifrp"
+                . "&ClientSecret=rktegnml"
+                . "&RegisteredDelivery=true";
+        // Fire the request and wait for the response
+        
+        $response = file_get_contents($url);
+// var_dump($response);
+        ob_end_clean();
+
+
+        break;
+
+    case 6:
+        $DB_HOST = "localhost";
+        $DB_NAME = "csashesi_beatrice-lungahu";
+        $DB_USER = "csashesi_bl16";
+        $DB_PWORD = "db!hiJ35";
+
+        $link = mysqli_connect($DB_HOST, $DB_USER, $DB_PWORD, $DB_NAME);
+        if ($link == false) {
+            echo "not succesfull";
+        }
+
+        $username = $_REQUEST['UserName'];
+        $password = $_REQUEST['randomPass'];
+        
+        
+        $str_query ="SELECT * from MWC_SignUpCarPooling WHERE randomPass='$password' AND UserName='$username'";
+
+        if (mysqli_query($link, $str_query)) {
+            echo '{"result":1,"message": "SUpdated"}';
+            $_SESSION['UserName'] = $username;
+        } else {
+           
+            echo '{"result":0,"message": "unsuccessful"}';
+        }
+    break;
+        /*
+        $rows = mysqli_num_rows($query);
+        if ($rows>0) {
+            $_SESSION["uname"] = $rows["uname"];
+            
+            header('location: http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/createPool.php'); // Redirecting To Other Page
+        } */
 }
 ?>
