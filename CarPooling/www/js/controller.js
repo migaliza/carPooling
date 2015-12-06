@@ -151,7 +151,7 @@ function Login() {
         var obj = sendRequest(theUrl);
         
         if(obj.result==1){
-            window.location="http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/createPool.php";
+            window.location="createPool.php";
         }
     });
 }
