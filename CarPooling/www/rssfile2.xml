@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<rss version="2.0">
+		<channel>
+		<title>my Second rss on MyjoyOnline politics</title>
+		<link>http://www.myjoyonline.com/pages/rss/site_politics.xml</link>
+		<description>This describes ashesi and developments taking place</description>
+		<item>
+			<title>item: My JoyOnline Link</title>
+			<link>http://feeds.bbci.co.uk/news/rss.xml?edition=int</link>
+			<description> Politics news </description>
+		</item>

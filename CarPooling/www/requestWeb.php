@@ -132,7 +132,17 @@ switch ($cmd) {
         }
         // $poolDetails = "You joined the pool";
 
-
+        ob_start();
+        //echo "here";
+        $url = "https://api.smsgh.com/v3/messages/send?"
+                . "From=CarPooling"
+                . "&To=%2B$phoneNumber"
+                . "&Content=$poolDetails"
+                . "&ClientId=odfbifrp"
+                . "&ClientSecret=rktegnml"
+                . "&RegisteredDelivery=true";
+        $response = file_get_contents($url);
+        ob_end_clean();
 
         break;
 
@@ -160,25 +170,19 @@ switch ($cmd) {
 
 
         $str_query = "INSERT INTO MWC_SignUpCarPooling (Email,FirstName,LastName,PhonNumber,randomPass,UserName) VALUES('$email','$FirstName','$LastName','$phoneNumber','$randomPass','$username')";
-        
-         $content="Your+user+name+is%3A+".$username."+and+Password%3A+".$randomPass;
-        if (mysqli_query($link, $str_query)) {
-            echo '{"result":1,"message": "SUpdated"}';
-            ob_start();
+
+         ob_start();
             $url = "https://api.smsgh.com/v3/messages/send?"
-                    . "From=CarPooling"
+                    . "From=CarPool"
                     . "&To=%2B$phoneNumber"
-                    . "&Content=$content"
+                    . "&Content=$randomPass"
                     . "&ClientId=odfbifrp"
                     . "&ClientSecret=rktegnml"
                     . "&RegisteredDelivery=true";
+            // Fire the request and wait for the response
+
             $response = file_get_contents($url);
             ob_end_clean();
-        } else {
-            //echo $str_query;
-            echo '{"result":0,"message": "unsuccessful"}';
-        }
-
 
 
 

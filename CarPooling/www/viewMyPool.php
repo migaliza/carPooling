@@ -43,9 +43,9 @@ and open the template in the editor.
                 <div id="navbar" class="navbar-collapse collapse">
                     <div>
                         <ul class="nav nav-tabs nav-justified">
-                            <li ><a href="index.html"><b>HOME</b></a></li>
-                            <li><a href="createPool.html"><b>NEW POOL</b></a></li>
-                            <li><a href="viewMyPool.html"><b>VIEW MY POOLS</b></a></li> 
+                            <li ><a href="WebPage.php"><b>HOME</b></a></li>
+                            <li><a href="Login.html"><b>NEW POOL</b></a></li>
+                            <li><a href="viewMyPool.php"><b>VIEW MY POOLS</b></a></li> 
                         </ul>
                     </div>
                 </div><!--/.navbar-collapse -->

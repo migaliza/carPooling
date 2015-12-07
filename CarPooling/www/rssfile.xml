@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<rss version="2.0">
+		<channel>
+		<title>My first RSS feed on ashesi</title>
+		<link>http://www.ashesi.edu.gh/</link>
+		<description>This describes ashesi and developments taking place</description>
+		<item>
+			<title>item 1. Mobile web courese 1</title>
+			<link>http://ashesi.edu.gh</link>
+			<description>Course notes -lec 1</description>
+		</item>
+		

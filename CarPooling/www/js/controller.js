@@ -76,6 +76,31 @@ function joinPool() {
 }
 
 
+function loadSignedPools(){
+
+//alert("ready");
+    var theUrl = "http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/request.php?cmd=2";
+    var obj = sendRequest(theUrl);
+    if (obj.result === 1) {
+
+        $.each(obj.values, function (i, value) {
+            var modalController = $('<div><div>');
+            modalController.html('<div id="' + i + '" class="modal fade" role="dialog"><div class="modal-dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title" id="poolId"> ' + value.PoolId + '</h4><h4 id="Oname"> OWNER NAME: ' + value.Owener + '</h4></div><div class="modal-body"><h5>Remaining to Fill Pool</h5><h5 id="poolNumber">' + value.Remaining + '</h5><div><input type="button" class= "btn-info" value ="SCAN" id="btnScan" onclick="scanBarcode()"></div><div><input type="text" name="captured" id="capturedd" placeholder="Scan your student or staff id"></div><input type="text" class="form-control" id="nameO" name="JoinPoolName" placeholder="name"><input type="text" class="form-control" id="phoneNu" name="PhoneNumber" placeholder="+233505358170"></div><div class="modal-footer"><input class="btn btn-success" type="submit" value="INTERESTED!" onClick="joinPool()"> <a href="#" class="btn" data-dismiss="modal">CLOSE</a></div></div></div></div>');
+
+            var divElement = $('<div></div>');
+
+            divElement.html('<div class="container-fluid" style="background-color: #e5ffe5;border-style: ridge; border-color:#000000; margin: 1% 0% 1% 0%; "><div class="card "><div class="card-header text-muted" ><h4><b> OWNER NAME: </b> ' + value.Owener + '</h4></div> <div class="card-block"><p><b>DESTINATION: </b>' + value.Destination + '<p><p class="card-text"><b>DEPARTURE: </b>' + value.Time + '</p>' + '<p><p class="card-text"><b>COST PER PERSON: </b>' + value.CostPerPerson + '</p><a href="#" class="btn btn-primary"  data-toggle="modal" data-target="#' + i + '">VIEW</a></div><div class="card-footer text-muted"></div><div class="card-footer text-muted"><h4><b>People Remaining to Fill Pool: </b>' + value.Remaining + '</h4></div> </div></div>');
+            $("#cardsOutPut").append(divElement);
+            $("#modalSample").append(modalController);
+
+        });
+
+
+    }
+
+}
+
+
 /*
  * 
  * 
