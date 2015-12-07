@@ -54,6 +54,7 @@ function joinPool() {
             alert("THE POOL IS ALREADY FULL JOIN ANOTHER ONE OR CREATE ONE");
         }
         else {
+            var numberUpdate = nRemaining - 1;
             var joinName = $("#nameO").val();
             var phoneNumber = $("#phoneNu").val();
             var stringPool = "Name=" + joinName + "&PhoneNumber=" + phoneNumber;
@@ -68,8 +69,9 @@ function joinPool() {
             else {
                 alert("Not successful");
             }
+            
         }
-        var numberUpdate = nRemaining - 1;
+        
 
 
     }
