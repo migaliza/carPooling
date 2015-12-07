@@ -25,9 +25,9 @@ function costPerPerson() {
 function scanBarcode() {
     cordova.plugins.barcodeScanner.scan(
             function (result) {
-                alert(result.text);
-                document.getElementById("captured").value=result.text;
-                //$("#captured").val(result.text)
+               // alert(result.text);
+                document.getElementById("capturedd").value=result.text;
+                
                 
             },
             function (error) {
@@ -54,7 +54,10 @@ function joinPool() {
             var numberUpdate = nRemaining - 1;
             var joinName = $("#nameO").val();
             var phoneNumber = $("#phoneNu").val();
-            var stringPool = "Name=" + joinName + "&PhoneNumber=" + phoneNumber;
+            var owner=document.getElementById("Oname");
+            var capturedId = $("#capturedd").val();
+            var ownerPool = owner.innerText;
+            var stringPool = "JoinPoolName=" + joinName + "&PhoneNumber=" + phoneNumber+"&PoolOwner="+ownerPool+"&captured="+capturedId;
             var stringVal = "PoolId=" + id + "&Remaining=" + numberUpdate;
             var theUrl = "http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/request.php?cmd=3&" + stringVal;
             var obj = sendRequest(theUrl);

@@ -119,10 +119,12 @@ switch ($cmd) {
 
         $name = $_REQUEST['JoinPoolName'];
         $pNumber = $_REQUEST['PhoneNumber'];
+        $poolOwner =$_REQUEST['JoinPoolName'];
+        $studentStaffId = $_REQUEST['StaffStudentId'];
 
 
 
-        $str_query = "INSERT INTO  MWC_PoolMembers (Name,PhoneNumber) VALUES('$name','$pNumber')";
+        $str_query = "INSERT INTO  MWC_PoolMembers (Name,PhoneNumber,PoolOwner,StaffStudentId) VALUES('$name','$pNumber','$poolOwner','$studentStaffId')";
         if (mysqli_query($link, $str_query)) {
             echo '{"result":1,"message": "SUpdated"}';
         } else {
