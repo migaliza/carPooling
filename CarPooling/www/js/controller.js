@@ -21,6 +21,17 @@ function costPerPerson() {
 
 
 }
+
+function scanBarcode() {
+    cordova.plugins.barcodeScanner.scan(
+            function (result) {
+                $("#captured").val(result.text)
+            },
+            function (error) {
+                alert("Scanning failed: " + error);
+            }
+    );
+}
 /*
  * 
  * function to find the remaining number of people to board
@@ -79,7 +90,7 @@ function loadData() {
 
         $.each(obj.values, function (i, value) {
             var modalController = $('<div><div>');
-            modalController.html('<div id="' + i + '" class="modal fade" role="dialog"><div class="modal-dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title" id="poolId"> ' + value.PoolId + '</h4><h4 id="Oname"> OWNER NAME: ' + value.Owener + '</h4></div><div class="modal-body"><h5>Remaining to Fill Pool</h5><h5 id="poolNumber">' + value.Remaining + '</h5><input type="text" class="form-control" id="nameO" name="JoinPoolName" placeholder="name"><input type="text" class="form-control" id="phoneNu" name="PhoneNumber" placeholder="+233505358170"></div><div class="modal-footer"><input class="btn btn-success" type="submit" value="INTERESTED!" onClick="joinPool()"> <a href="#" class="btn" data-dismiss="modal">CLOSE</a></div></div></div></div>');
+            modalController.html('<div id="' + i + '" class="modal fade" role="dialog"><div class="modal-dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title" id="poolId"> ' + value.PoolId + '</h4><h4 id="Oname"> OWNER NAME: ' + value.Owener + '</h4></div><div class="modal-body"><h5>Remaining to Fill Pool</h5><h5 id="poolNumber">' + value.Remaining + '</h5><div><input type="button" class= "btn-info" value ="SCAN" id="btnScan" onclick="scanBarcode()"></div><div><input type="text" name="captured" id="capturedd" placeholder="Scan your student or staff id"></div><input type="text" class="form-control" id="nameO" name="JoinPoolName" placeholder="name"><input type="text" class="form-control" id="phoneNu" name="PhoneNumber" placeholder="+233505358170"></div><div class="modal-footer"><input class="btn btn-success" type="submit" value="INTERESTED!" onClick="joinPool()"> <a href="#" class="btn" data-dismiss="modal">CLOSE</a></div></div></div></div>');
 
             var divElement = $('<div></div>');
 
@@ -115,32 +126,32 @@ function signUp() {
         var lastName = $("#lastName").val();
         var phoneNumber = $("#pNumber").val();
         var userName = $("#userName").val();
-        
 
-        if (email == "" || firstName == "" || lastName == "" || phoneNumber === ""||userName==="") {
+
+        if (email == "" || firstName == "" || lastName == "" || phoneNumber === "" || userName === "") {
             alert("The values entered are invalid or Your passwords do not match");
         }
         else {
-            var stringVal = "Email=" + email + "&FirstName=" + firstName + "&LastName=" + lastName + "&PhonNumber=" + phoneNumber+"&UserName="+userName;
+            var stringVal = "Email=" + email + "&FirstName=" + firstName + "&LastName=" + lastName + "&PhonNumber=" + phoneNumber + "&UserName=" + userName;
             var theUrl = "http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/request.php?cmd=5&" + stringVal;
 
             var obj = sendRequest(theUrl);
-            if(obj.result==1){
+            if (obj.result == 1) {
                 alert("Succesfully Signed Up");
-                document.getElementById("email").value ="";
-                document.getElementById("firstName").value ="";
-                document.getElementById("lastName").value ="";
-                document.getElementById("pNumber").value ="";
-                document.getElementById("userName").value ="";
+                document.getElementById("email").value = "";
+                document.getElementById("firstName").value = "";
+                document.getElementById("lastName").value = "";
+                document.getElementById("pNumber").value = "";
+                document.getElementById("userName").value = "";
 
             }
-            else{
+            else {
                 alert("Unsuccessful");
-                document.getElementById("email").value ="";
-                document.getElementById("firstName").value ="";
-                document.getElementById("lastName").value ="";
-                document.getElementById("pNumber").value ="";
-                document.getElementById("userName").value ="";
+                document.getElementById("email").value = "";
+                document.getElementById("firstName").value = "";
+                document.getElementById("lastName").value = "";
+                document.getElementById("pNumber").value = "";
+                document.getElementById("userName").value = "";
 
             }
 
@@ -167,10 +178,10 @@ function Login() {
         var theUrl = "http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/request.php?cmd=6&" + stringVal;
 
         var obj = sendRequest(theUrl);
-        
-        if(obj.result==1){
+
+        if (obj.result == 1) {
             window.location.replace('createPool.html');
-  
+
         }
     });
 }
