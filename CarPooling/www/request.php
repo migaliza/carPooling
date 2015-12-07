@@ -79,7 +79,7 @@ switch ($cmd) {
         break;
 
     case 3:
-
+/*Update the remaining number of people*/
         $DB_HOST = "localhost";
         $DB_NAME = "csashesi_beatrice-lungahu";
         $DB_USER = "csashesi_bl16";
@@ -89,8 +89,7 @@ switch ($cmd) {
         if ($link == false) {
             echo "not succesfull";
         }
-        //echo "Remaining is ".$Remaining;
-        //echo "Poolid ".$poolid;
+
         $Remaining = $_REQUEST['Remaining'];
         $poolid = $_REQUEST['PoolId'];
 

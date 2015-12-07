@@ -60,8 +60,9 @@ function joinPool() {
             var obj = sendRequest(theUrl);
             var joinUrl = "http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/request.php?cmd=4&" + stringPool;
             var obj2 = sendRequest(joinUrl);
-            if (obj.result === 1) {
+            if (obj.result === 1 && bje2.result===1) {
                 alert("Sucessfull");
+                location.reload();
             }
             else {
                 alert("Not successful");
