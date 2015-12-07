@@ -25,9 +25,10 @@ function costPerPerson() {
 function scanBarcode() {
     cordova.plugins.barcodeScanner.scan(
             function (result) {
+                alert(result.text);
                 document.getElementById("captured").value=result.text;
                 //$("#captured").val(result.text)
-                alert(result.text);
+                
             },
             function (error) {
                 alert("Scanning failed: " + error);
