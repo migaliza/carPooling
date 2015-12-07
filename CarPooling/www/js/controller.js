@@ -41,10 +41,7 @@ function scanBarcode() {
  */
 function joinPool() {
     $errorMsg = $("<span class='error'>This field is required..!!</span>");
-    if (($("#nameO").val().length == 0) && ($("#phoneNu").val().length == 0)) {
-        alert("Enter name and phone number");
-    }
-    else {
+    
         var pool = document.getElementById("poolId");
         var id = pool.innerText;
         var numberR = document.getElementById("poolNumber");
@@ -74,7 +71,7 @@ function joinPool() {
         
 
 
-    }
+    
 
 }
 

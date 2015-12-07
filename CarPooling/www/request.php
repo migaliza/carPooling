@@ -176,7 +176,7 @@ switch ($cmd) {
             ob_end_clean();
         } else {
             //echo $str_query;
-            echo '{"result":0,"message": "unsuccessful"}';
+            echo '{"result":0,"message": "Sign Up unsuccessful"}';
         }
 
 
