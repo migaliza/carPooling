@@ -58,9 +58,9 @@ function joinPool() {
     var ownerPool = owner.innerText;
     var stringPool = "JoinPoolName=" + joinName + "&PhoneNumber=" + phoneNumber + "&PoolOwner=" + ownerPool + "&captured=" + capturedId;
     var stringVal = "PoolId=" + id + "&Remaining=" + numberUpdate;
-    var theUrl = "request.php?cmd=3&" + stringVal;
+    var theUrl = "http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/request.php?cmd=3&" + stringVal;
     var obj = sendRequest(theUrl);
-    var joinUrl = "request.php?cmd=4&" + stringPool;
+    var joinUrl = "http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/request.php?cmd=4&" + stringPool;
     var obj2 = sendRequest(joinUrl);
     if (obj.result === 1 && obj2.result === 1) {
         alert("Sucessfull");
@@ -82,7 +82,7 @@ function joinPool() {
 function loadSignedPools() {
 
 //alert("ready");
-    var theUrl = "request.php?cmd=2";
+    var theUrl = "http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/request.php?cmd=2";
     var obj = sendRequest(theUrl);
     if (obj.result === 1) {
 
@@ -114,7 +114,7 @@ function loadSignedPools() {
 
 function loadData() {
 //alert("ready");
-    var theUrl = "request.php?cmd=2";
+    var theUrl = "http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/request.php?cmd=2";
     var obj = sendRequest(theUrl);
     if (obj.result === 1) {
 
@@ -163,7 +163,7 @@ function signUp() {
         }
         else {
             var stringVal = "Email=" + email + "&FirstName=" + firstName + "&LastName=" + lastName + "&PhonNumber=" + phoneNumber + "&UserName=" + userName;
-            var theUrl = "request.php?cmd=5&" + stringVal;
+            var theUrl = "http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/request.php?cmd=5&" + stringVal;
 
             var obj = sendRequest(theUrl);
             if (obj.result == 1) {
@@ -205,7 +205,7 @@ function Login() {
         var username = $("#loginUsername").val();
         var password = $("#loginPassword").val();
         var stringVal = "UserName=" + username + "&randomPass=" + password;
-        var theUrl = "request.php?cmd=6&" + stringVal;
+        var theUrl = "http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/request.php?cmd=6&" + stringVal;
 
         var obj = sendRequest(theUrl);
 
@@ -247,7 +247,7 @@ function saveToDataBase() {
         var peopleR = Number(people) - 1;
         alert(peopleR);
         var stringVal = "Owener=" + owner + "&Destination=" + destination + "&Time=" + time + "&Cost=" + tCost + "&NOoPeople=" + people + "&CostPerPerson=" + costperPerson + "&MeetUpPoint=" + point + "&Remaining=" + peopleR;
-        var theUrl = "request.php?cmd=1&" + stringVal;
+        var theUrl = "http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/request.php?cmd=1&" + stringVal;
         // alert(theUrl);
         var obj = sendRequest(theUrl);
         if (obj.result === 1)
