@@ -120,7 +120,7 @@ switch ($cmd) {
         $name = $_REQUEST['JoinPoolName'];
         $pNumber = $_REQUEST['PhoneNumber'];
         $poolOwner =$_REQUEST['JoinPoolName'];
-        $studentStaffId = $_REQUEST['StaffStudentId'];
+        $studentStaffId = $_REQUEST['captured'];
 
 
 
@@ -138,8 +138,6 @@ switch ($cmd) {
         break;
 
     case 5:
-
-
         $DB_HOST = "localhost";
         $DB_NAME = "csashesi_beatrice-lungahu";
         $DB_USER = "csashesi_bl16";
@@ -201,8 +199,10 @@ switch ($cmd) {
 
 
         $str_query = "SELECT * from MWC_SignUpCarPooling WHERE randomPass='$password' AND UserName='$username'";
+        $result=mysqli_query($link, $str_query);
+        $rowCount= mysqli_num_rows($result);
 
-        if (mysqli_query($link, $str_query)) {
+        if ($rowCount>0) {
             echo '{"result":1,"message": "SUpdated"}';
             $_SESSION['UserName'] = $username;
         } else {
@@ -210,12 +210,36 @@ switch ($cmd) {
             echo '{"result":0,"message": "unsuccessful"}';
         }
         break;
-    /*
-      $rows = mysqli_num_rows($query);
-      if ($rows>0) {
-      $_SESSION["uname"] = $rows["uname"];
+        
+        
+    case 7:
+        $DB_HOST = "localhost";
+        $DB_NAME = "csashesi_beatrice-lungahu";
+        $DB_USER = "csashesi_bl16";
+        $DB_PWORD = "db!hiJ35";
 
-      header('location: http://cs.ashesi.edu.gh/~csashesi/class2016/beatrice-lungahu/MobileWeb/CarPooling/createPool.php'); // Redirecting To Other Page
-      } */
+        $link = mysqli_connect($DB_HOST, $DB_USER, $DB_PWORD, $DB_NAME);
+        if ($link == false) {
+            echo "not succesfull";
+        }
+        /*
+          if(mysqli_select_db($DB_NAME,$link)){
+          echo "echo can not select db";
+          } */
+
+
+        $str_query = "SELECT * FROM MWC_PoolMembers ";
+        $result = mysqli_query($link, $str_query);
+        $row = $result->fetch_assoc();
+        echo '{"result":1,"values":['; //start of json object
+        while ($row) {
+            echo json_encode($row);   //convert the result array to json object
+            $row = $result->fetch_assoc();
+            if ($row) {
+                echo ",";     //if there are more rows, add comma 
+            }
+        }
+        echo "]}";
+        break;
 }
 ?>
